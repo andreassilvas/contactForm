@@ -7,10 +7,10 @@
                     :class="inputClass" v-model="inputValue" @input="updateValue"></textarea>
             </template>
 
-             <template v-else>
+            <template v-else>
                 <input :id="inputId" :class="inputClass" :name="inputName" :type="inputType" :placeholder="placeholder"
                     v-model="inputValue" @input="updateValue" :style="displayInput">
-            </template> 
+            </template>
             <!-- slot used for validation container -->
             <slot></slot>
         </div>
@@ -50,7 +50,7 @@ export default {
         useLabelText: {
             type: Boolean,
             default: true
-        } 
+        }
     },
 
     emits: ['update:modelValue'],
@@ -68,7 +68,7 @@ export default {
         updateValue() {
             this.$emit('update:modelValue', this.inputValue);
         },
-   
+
     },
 };
 </script>
@@ -87,7 +87,7 @@ export default {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.form-control h2{
+.form-control h2 {
     font-size: .93rem;
     margin: 0.5rem 0;
     font-weight: 100;
@@ -127,11 +127,6 @@ export default {
     resize: none;
 }
 
-/* #contact-email-container,
-#contact-message-container {
-    width: 70%;
-} */
-
 .content-image {
     height: 45px;
 }
@@ -155,5 +150,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+@media screen and (max-width:480px) {
+    .form-control {
+        width: 90%;
+    }
+
 }
 </style>

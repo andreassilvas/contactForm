@@ -50,6 +50,7 @@ export default {
             inputValidation: false,
             sendMessageError: null,
             messageSubmited: null,
+            changesSave: false,
         }
     },
     computed: {
@@ -89,6 +90,7 @@ export default {
     },
     methods: {
         async sendMessage() {
+            this.changesSave = true;
             this.messageSubmited = null;
             this.inputValidation = true;
 
@@ -159,77 +161,87 @@ export default {
 
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+form {
+    max-width: 25rem;
+    padding: 0.5rem 0.5rem;
+    height: 21rem;
+}
+
 .contact-buttons-container {
     margin: .3rem 1rem;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+}
 
-    .button-common {
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+.button-common {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    .send-message-button {
-        font-family: inherit;
-        font-size: .8rem;
-        padding: 0.4rem 2rem;
-        border: 2px solid #0a2e2c;
-        background-color: #0a2e2c;
-        color: #e2e7f7;
+.send-message-button {
+    font-family: inherit;
+    font-size: .8rem;
+    padding: 0.4rem 2rem;
+    border: 2px solid #0a2e2c;
+    background-color: #0a2e2c;
+    color: #e2e7f7;
+}
 
-        &:hover,
-        &:active {
-            border: 2px solid #0a2e2c;
-            background-color: transparent;
-            color: #0a2e2c;
-        }
-    }
+.reset-form-button {
+    display: inline-block;
+    position: relative;
+    padding: 0.4rem .5rem;
+    font-size: 1.3rem;
+    background: transparent;
+    color: #0a2e2c;
+    border: none;
+    margin-right: 1.5rem;
+    transition: opacity 0.3s;
+}
 
-    .reset-form-button {
-        display: inline-block;
-        position: relative;
-        padding: 0.4rem .5rem;
-        font-size: .9rem;
-        background: transparent;
-        color: #0a2e2c;
-        border: none;
-        margin-left: 5rem;
+.send-message-button:hover,
+.send-message-button:active {
+    border: 2px solid #0a2e2c;
+    background-color: transparent;
+    color: #0a2e2c;
+}
 
-        i {
-            font-size: 1.3rem;
-            transition: opacity 0.3s;
-            color: #0a2e2c;
-            opacity: 1;
-        }
 
-        &:hover i {
-            opacity: 0;
-        }
+/* Initially hide the icon */
+.reset-form-button i {
+    opacity: 1;
+}
 
-        span {
-            opacity: 0;
-            transition: opacity 0.3s;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: .8rem;
-            padding: 0.4rem 2rem;
-            border: 2px solid #0a2e2c;
-            background-color: #6e949a;
-            color: #ecfcf9;
-        }
+/* Show the icon on button hover */
+.reset-form-button:hover i {
+    opacity: 0;
+}
 
-        &:hover span {
-            opacity: 1;
-        }
-    }
+/* Style for the button text */
+.reset-form-button span {
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: .8rem;
+    padding: 0.5rem 2rem;
+    border: 2px solid #0a2e2c;
+    background-color: #6e949a;
+    color: #ecfcf9;
+}
+
+/* Show text on button hover */
+.reset-form-button:hover span {
+    opacity: 1;
 }
 
 #validation-container.visible {
     visibility: visible;
+
 }
 
 #validation-container,
@@ -251,10 +263,52 @@ export default {
     line-height: 1.2;
     margin: 0 1rem;
     font-weight: 500;
+}
 
-    &.success-message {
-        color: #037603;
+#validation-container.success-message {
+    color: #037603;
+}
+
+@media screen and (min-width: 280px) and (max-width: 320px) {
+    .send-message-button.button-common {
+        padding: 0.4rem 0.4rem;
+        font-size: .6rem;
+        margin-right: 1rem;
+    }
+
+    .reset-form-button.button-common span {
+        font-size: .6rem;
+    }
+
+    .reset-form-button {
+        margin-right: 0;
+    }
+
+    .reset-form-button span {
+        padding: 0.4rem 1.5rem;
+        font-size: .7rem;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width:932px) {
+    @media (orientation: landscape) {
+        .send-message-button.button-common {
+            font-size: .6rem;
+            margin-right: 1rem;
+        }
+
+        .reset-form-button.button-common span {
+            font-size: .6rem;
+        }
+
+        .reset-form-button {
+            margin-right: 0;
+        }
+
+        .reset-form-button span {
+            padding: 0.4rem 1.5rem;
+            font-size: .7rem;
+        }
     }
 }
 </style>
-

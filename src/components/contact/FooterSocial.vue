@@ -2,13 +2,11 @@
     <div class="portfolio-footer">
         <div class="footer-container">
             <div class="social-links">
-                <a class="social-media-lang" role="link" aria-label="Go to Linkin Page" @click="openLinkedIn"><i
-                        class="bi bi-linkedin"></i></a>
-                <a class="social-media-lang" role="link" aria-label="Go to GitHub" @click="Githug"><i
-                        class="bi bi-github"></i></a>
+                <a role="link" aria-label="Go to Linkin Page" @click="openLinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a role="link" aria-label="Go to GitHub" @click="Githug"><i class="bi bi-github"></i></a>
             </div>
         </div>
-        <div class="copyright-2024">
+        <div class="copyright-2023">
             <p>{{ $t('copyright') }}</p>
         </div>
     </div>
@@ -30,30 +28,29 @@ export default {
 <style scoped>
 .portfolio-footer {
     background-color: #0a2e2c;
-    padding: 1.5rem 1rem 0;
-    height: 25vh;
-}
-
-.footer-container {
-    max-width: 1170px;
-    margin: auto;
+    padding: 1rem;
+    height: 23vh;
+    width: 100%;
 }
 
 ul {
     list-style: none;
 }
 
+.social-links {
+    position: relative;
+}
+
 .social-links::before {
     content: '';
     position: absolute;
-    right: 0;
-    left: 550px;
+    right: 55%;
     background-color: #3fd5cd;
     height: 2px;
     box-sizing: border-box;
     width: 27px;
     transform: translate(-50%, -50%) rotate(-90deg);
-    margin: 0.3rem;
+    margin: 1rem 0.3rem;
 }
 
 .social-links a {
@@ -61,12 +58,13 @@ ul {
     height: 40px;
     width: 40px;
     background-color: rgba(255, 255, 255, 0.2);
-    margin: 0 10px 10px 0;
+    margin: 0.5rem 0.5rem;
     text-align: center;
     line-height: 40px;
     border-radius: 50%;
     color: #ffffff;
     transition: all 0.5s ease;
+    cursor: pointer;
 }
 
 .social-links a:hover {
@@ -74,14 +72,42 @@ ul {
     background-color: #3fd5cd;
 }
 
-.copyright-2024 {
+.copyright-2023 {
     display: flex;
     justify-content: center;
     margin: 0 1rem;
     font-size: .8rem;
     border-top: 1px solid #0f4946;
     padding: 0.5rem 0;
-    margin: 0.1rem;
+    color: #b5b5b5;
+}
+
+@media screen and (min-width: 280px) and (max-width: 568px) {
+    .social-links::before {
+        left: 100px;
+    }
+}
+
+@media screen and (min-width: 280px) and (max-width:320px) {
+    .social-links::before {
+        left: 50px;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width:932px) {
+    @media (orientation: landscape) {
+        .portfolio-footer {
+            height: 30vh;
+        }
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 568px){
+    @media (orientation: landscape) {
+        .portfolio-footer {
+            height: 35vh;
+        }
+    }
 }
 </style>
 
