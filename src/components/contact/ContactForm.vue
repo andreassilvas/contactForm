@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import FormInputs from '../UI/form/FormInputs.vue';
 import FormValidation from '../UI/validation/FormValidation.vue';
 import GobalButton from '../UI/buttons/GobalButton.vue';
@@ -89,7 +88,7 @@ export default {
         },
     },
     methods: {
-        async sendMessage() {
+        sendMessage() {
             this.changesSave = true;
             this.messageSubmited = null;
             this.inputValidation = true;
@@ -97,7 +96,6 @@ export default {
             if (this.validationInputs) {
                 this.sendMessageError = null;
 
-                const SERVER_URL = 'https://form2024-6dcba-default-rtdb.europe-west1.firebasedatabase.app/dummyForm.json';
                 const { contactEmail, contactMessage } = this.formData;
 
                 const postContactData = {
@@ -105,16 +103,10 @@ export default {
                     message: contactMessage,
                     date: new Date().toDateString()
                 }
-                const headers = {
-                    'Content-Type': 'application/json',
-                }
-
+              
                 try {
-                    const response = await axios.post(
-                        SERVER_URL,
-                        postContactData,
-                        { headers }
-                    );
+                    console.log(postContactData);
+                    const response = true;
 
                     //reset the inputs
                     Object.assign(this.formData, {
@@ -124,9 +116,7 @@ export default {
                     this.inputValidation = false;
 
                     //data submited
-                    this.messageSubmited = response.data
-                        ? this.$t('formValidation.validationMessage.messageSubmited')
-                        : null;
+                    this.messageSubmited = response ? this.$t('formValidation.validationMessage.messageSubmited') : null;
 
                     setTimeout(() => {
                         this.messageSubmited = null;
